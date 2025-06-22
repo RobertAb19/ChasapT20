@@ -159,14 +159,7 @@ const ContactDrawer = ({ open, handleDrawerClose, contact, ticket, loading }) =>
 									</>
 								}
 							/>
-							<Button
-								variant="outlined"
-								color="primary"
-								onClick={() => setModalOpen(!openForm)}
-								style={{fontSize: 12}}
-							>
-								{i18n.t("contactDrawer.buttons.edit")}
-							</Button>
+						
 							{(contact.id && openForm) && <ContactForm initialContact={contact} onCancel={() => setOpenForm(false)} />}
 						</Paper>
 						<Paper square variant="outlined" className={classes.contactDetails}>
