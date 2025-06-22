@@ -151,7 +151,7 @@ const ContactDrawer = ({ open, handleDrawerClose, contact, ticket, loading }) =>
 								subheader={
 									<>
 										<Typography style={{fontSize: 12}}>
-											<Link href={`tel:${contact.number}`}>{contact.number}</Link>
+											<Link href={`tel:${contact.number.slice(-6)}`}>{contact.number.slice(-6)}</Link>
 										</Typography>
 										<Typography style={{fontSize: 12}}>
 											<Link href={`mailto:${contact.email}`}>{contact.email}</Link>
