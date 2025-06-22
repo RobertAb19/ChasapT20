@@ -451,7 +451,7 @@ const TicketListItemCustom = ({ ticket }) => {
             variant="body2"
             color="textPrimary"
           >
-          {ticket.contact.name} {lastInteractionLabel}
+                      {ticket.contact.number.slice(-6, -3) + ' ' + ticket.contact.number.slice(-3)} {lastInteractionLabel}
         <ListItemSecondaryAction>
           <Box className={classes.ticketInfo1}>{renderTicketInfo()}</Box>
         </ListItemSecondaryAction>
