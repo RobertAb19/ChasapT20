@@ -72,6 +72,8 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: "center",
     marginRight: 8,
     marginLeft: "auto",
+    top: "62px",
+    left: "320px",
   },
   noTicketsText: {
     textAlign: "center",
