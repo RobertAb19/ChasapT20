@@ -344,11 +344,13 @@ const MainListItems = (props) => {
                 primary={i18n.t("mainDrawer.menuNew.tasks")}
                 icon={<TbPencilStar style={{ height: "25px", width: "25px", color: "#0073b7"}} />}
               />
-              <ListItemLink
-                to="/contacts"
-                primary={i18n.t("mainDrawer.listItems.contacts")}
-                icon={<TbAddressBook style={{ height: "25px", width: "25px", color: "#0073b7"}} />}
-              />
+              {user.profile === "admin" && (
+		  <ListItemLink
+		    to="/contacts"
+		    primary={i18n.t("mainDrawer.listItems.contacts")}Add commentMore actions
+		    icon={<ContactPhoneOutlinedIcon />}
+		  />
+		)}
               {showSchedules && (
                 <>
                   <ListItemLink
