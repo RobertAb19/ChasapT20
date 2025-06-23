@@ -108,6 +108,25 @@ contadordash: mode == "light" ? "#ffffff" : "#ffffff",
         window.localStorage.setItem("preferredTheme", mode);
     }, [mode]);
 
+// 🔐 Verificar si el token ha expirado antes de renderizar la app
+const token = localStorage.getItem("token");
+
+if (token) {
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const now = Date.now() / 1000;
+    if (payload.exp < now) {
+      localStorage.removeItem("token");
+      window.location.reload(); // Redirige automáticamente a login
+      return null; // Evita renderizar mientras recarga
+    }
+  } catch (e) {
+    console.error("Token inválido o malformado:", e);
+    localStorage.removeItem("token");
+    window.location.reload();
+    return null;
+  }
+}
 
 
     return (
