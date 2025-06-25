@@ -48,18 +48,19 @@ const useStyles = makeStyles((theme) => ({
   pendingTicket: {
     cursor: "unset",
   },
-  queueTag: {
-    background: "#FCFCFC",
-    color: "#000",
-    marginRight: 1,
-    padding: 1,
-    fontWeight: 'bold',
-    paddingLeft: 5,
-    paddingRight: 5,
-    borderRadius: 3,
-    fontSize: "0.8em",
-    whiteSpace: "nowrap"
-  },
+ userTag: {
+  background: grey[700], 
+  color: 'white',
+  borderRadius: '4px',
+  fontSize: '0.7rem',
+  padding: '2px 6px',
+},
+queueTag: {
+  borderRadius: '4px',
+  fontSize: '0.7rem',
+  padding: '2px 6px',
+  fontWeight: 'bold',
+},
   noTicketsDiv: {
     display: "flex",
     height: "100px",
@@ -69,12 +70,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   newMessagesCount: {
-    zIndex: 999,
-    alignSelf: "center",
-    marginRight: 8,
-    marginLeft: "auto",
-    top: "10px",
-    left: "10px",
+    position: "absolute",  // Añadir esto si se usa top/left
+  right: 10,             // Mejor que left/marginLeft
+  top: 10,
+  zIndex: 1, 
   },
   noTicketsText: {
     textAlign: "center",
@@ -82,18 +81,13 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "14px",
     lineHeight: "1.4",
   },
-  connectionTag: {
-    background: "green",
-    color: "#FFF",
-    marginRight: 1,
-    padding: 1,
-    fontWeight: 'bold',
-    paddingLeft: 5,
-    paddingRight: 5,
-    borderRadius: 3,
-    fontSize: "0.8em",
-    whiteSpace: "nowrap"
-  },
+ connectionTag: {
+  background: green[500],
+  color: 'white',
+  borderRadius: '4px',
+  fontSize: '0.7rem',
+  padding: '2px 6px',
+},
   noTicketsTitle: {
     textAlign: "center",
     fontSize: "16px",
@@ -163,13 +157,12 @@ const useStyles = makeStyles((theme) => ({
     top: -13
   },
   secondaryContentSecond: {
-    display: 'flex',
-    // marginTop: 5,
-    //marginLeft: "5px",
-    alignItems: "flex-start",
-    flexDirection: "row",
-    alignContent: "flex-start",
-  },
+  display: 'flex',
+  gap: '4px',           // Espacio entre badges
+  alignItems: 'center', // Centra verticalmente
+  flexWrap: 'wrap',     // Permite que los badges pasen a otra línea si no caben
+  marginTop: '8px',     // Espaciado superior consistente
+},
   ticketInfo1: {
     position: "relative",
     top: 13,
@@ -236,7 +229,7 @@ const TicketListItemCustom = ({ ticket }) => {
     return () => {
       isMounted.current = false;
     };
-  }, [ticket]);
+  }, [ticket, ticket.unreadMessages]);
 
   const getTimeLabel = () => {
     if (!ticket.updatedAt) return "";
@@ -507,11 +500,24 @@ const TicketListItemCustom = ({ ticket }) => {
               </Typography>
               
               
-                <span style={{ marginTop: '15px', top: '8px', position: 'relative', left: '-150px' }} className={classes.secondaryContentSecond}>
-                  {ticket?.whatsapp?.name ? <Badge className={classes.connectionTag}>{ticket?.whatsapp?.name?.toUpperCase()}</Badge> : <br></br>}
-                  {ticketUser ? <Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticketUser}</Badge> : <br></br>}				  
-                  <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "Sin asig."}</Badge>
-                </span>
+               <span className={classes.secondaryContentSecond}>
+  {ticket?.whatsapp?.name && (
+    <Badge className={classes.connectionTag}>
+      {ticket.whatsapp.name.toUpperCase()}
+    </Badge>
+  )}
+  {ticketUser && (
+    <Badge className={classes.userTag}>  
+      {ticketUser}
+    </Badge>
+  )}
+  <Badge 
+    className={classes.queueTag} 
+    style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }}
+  >
+    {ticket.queue?.name?.toUpperCase() || "Sin asignar"}
+  </Badge>
+</span>
                 <Badge
                 className={classes.newMessagesCount}
                 badgeContent={ticket.unreadMessages}
