@@ -466,13 +466,7 @@ const TicketListItemCustom = ({ ticket }) => {
         </ListItemSecondaryAction>
 
         
-              <Badge
-                className={classes.newMessagesCount}
-                badgeContent={ticket.unreadMessages}
-                classes={{
-                  badge: classes.badgeStyle,
-                }}
-              />
+              
               </Typography>
         </span>
 
@@ -518,7 +512,13 @@ const TicketListItemCustom = ({ ticket }) => {
                   {ticketUser ? <Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticketUser}</Badge> : <br></br>}				  
                   <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "Sin asig."}</Badge>
                 </span>
-
+                <Badge
+                className={classes.newMessagesCount}
+                badgeContent={ticket.unreadMessages}
+                classes={{
+                  badge: classes.badgeStyle,
+                }}
+              />
 
 
             </span>
