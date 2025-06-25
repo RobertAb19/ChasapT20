@@ -167,7 +167,6 @@ const useStyles = makeStyles((theme) => ({
     // marginTop: 5,
     //marginLeft: "5px",
     alignItems: "flex-start",
-    flexWrap: "wrap",
     flexDirection: "row",
     alignContent: "flex-start",
   },
@@ -514,7 +513,7 @@ const TicketListItemCustom = ({ ticket }) => {
               </Typography>
               
               
-                <span style={{ marginTop: 4, }} className={classes.secondaryContentSecond} >
+                <span style={{ marginTop: '15px', top: '8px', position: 'relative', left: '-150px' }} className={classes.secondaryContentSecond}>
                   {ticket?.whatsapp?.name ? <Badge className={classes.connectionTag}>{ticket?.whatsapp?.name?.toUpperCase()}</Badge> : <br></br>}
                   {ticketUser ? <Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticketUser}</Badge> : <br></br>}				  
                   <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "Sin asig."}</Badge>
