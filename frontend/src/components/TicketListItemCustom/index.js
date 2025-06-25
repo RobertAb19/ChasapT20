@@ -502,6 +502,15 @@ const TicketListItemCustom = ({ ticket }) => {
     
 
               </Typography>
+              
+              
+                <span style={{ marginTop: 4, }} className={classes.secondaryContentSecond} >
+                  {ticket?.whatsapp?.name ? <Badge className={classes.connectionTag}>{ticket?.whatsapp?.name?.toUpperCase()}</Badge> : <br></br>}
+                  {ticketUser ? <Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticketUser}</Badge> : <br></br>}				  
+                  <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "SEM FILA"}</Badge>
+                </span>
+
+
 
               <Badge
                 className={classes.newMessagesCount}
