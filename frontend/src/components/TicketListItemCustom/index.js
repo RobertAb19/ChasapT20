@@ -69,11 +69,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   newMessagesCount: {
+    zIndex: 999,
     alignSelf: "center",
     marginRight: 8,
     marginLeft: "auto",
-    top: "62px",
-    left: "320px",
+    top: "10px",
+    left: "10px",
   },
   noTicketsText: {
     textAlign: "center",
@@ -464,6 +465,15 @@ const TicketListItemCustom = ({ ticket }) => {
         <ListItemSecondaryAction>
           <Box className={classes.ticketInfo1}>{renderTicketInfo()}</Box>
         </ListItemSecondaryAction>
+
+        
+              <Badge
+                className={classes.newMessagesCount}
+                badgeContent={ticket.unreadMessages}
+                classes={{
+                  badge: classes.badgeStyle,
+                }}
+              />
               </Typography>
         </span>
 
@@ -507,18 +517,11 @@ const TicketListItemCustom = ({ ticket }) => {
                 <span style={{ marginTop: 4, }} className={classes.secondaryContentSecond} >
                   {ticket?.whatsapp?.name ? <Badge className={classes.connectionTag}>{ticket?.whatsapp?.name?.toUpperCase()}</Badge> : <br></br>}
                   {ticketUser ? <Badge style={{ backgroundColor: "#000000" }} className={classes.connectionTag}>{ticketUser}</Badge> : <br></br>}				  
-                  <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "SEM FILA"}</Badge>
+                  <Badge style={{ backgroundColor: ticket.queue?.color || "#7c7c7c" }} className={classes.connectionTag}>{ticket.queue?.name?.toUpperCase() || "Sin asig."}</Badge>
                 </span>
 
 
 
-              <Badge
-                className={classes.newMessagesCount}
-                badgeContent={ticket.unreadMessages}
-                classes={{
-                  badge: classes.badgeStyle,
-                }}
-              />
             </span>
           }
 
