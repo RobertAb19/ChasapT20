@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
     width: "16px",
     height: "16px",
     position: "absolute",
-    top: "60%",
+    top: "10%",
     left: "4%",
     borderRadius: 10,
     borderStyle: "solid",
@@ -197,6 +197,8 @@ const TicketListItemCustom = ({ ticket }) => {
   const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [ticketUser, setTicketUser] = useState(null);
+   const [ticketQueueName, setTicketQueueName] = useState(null);
+  const [ticketQueueColor, setTicketQueueColor] = useState(null);
   const [tag, setTag] = useState([]);
   const [whatsAppName, setWhatsAppName] = useState(null);
   const [lastInteractionLabel, setLastInteractionLabel] = useState('');
@@ -226,6 +228,9 @@ const TicketListItemCustom = ({ ticket }) => {
     if (ticket.userId && ticket.user) {
       setTicketUser(ticket.user?.name);
     }
+
+        setTicketQueueName(ticket.queue?.name?.toUpperCase());
+    setTicketQueueColor(ticket.queue?.color);
     setTag(ticket?.tags);
 
     return () => {
@@ -427,7 +432,9 @@ const TicketListItemCustom = ({ ticket }) => {
           style={{ backgroundColor: ticket.queue?.color || grey[500] }}
           className={classes.ticketQueueColor}
         />
-
+        <Tooltip arrow placement="right" title={ticket.queue?.name?.toUpperCase() || "Sin Asignar"} >
+          <span style={{ backgroundColor: ticket.queue?.color || "#7C7C7C" }} className={classes.ticketQueueColor}></span>
+        </Tooltip>
          <ListItemAvatar>
          <Avatar src={ticket?.contact?.profilePicUrl} />
              <Tooltip
